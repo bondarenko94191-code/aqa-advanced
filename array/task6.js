@@ -11,5 +11,5 @@
 const numbersList = [1, 10, 14, 2, 4, 5, 43, 34];
 const copiedlist = Array.from(numbersList);
 copiedlist.sort((a, b) => a - b);
-console.log("Original List:", numbersList);
-console.log("Sorted List:", copiedlist);
+console.log('Original List:', numbersList);
+console.log('Sorted List:', copiedlist);
