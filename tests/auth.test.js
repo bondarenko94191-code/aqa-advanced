@@ -1,26 +1,14 @@
 const axios = require('axios');
+const BookController = require('./controllers/BookController');
+const UserController = require('./controllers/UserController');
+const bookslist = require('./testData/bookslist.json');
+
 test('Unathorized user is not able to add book to profile', async () => {
-	const response = await axios.post(
-		'https://demoqa.com/BookStore/v1/Books',
-		{
-			userId: '',
-			collectionOfIsbns: [
-				{
-					isbn: '9781491904244',
-				},
-			],
-		},
-		{
-			validateStatus: () => true,
-		},
-	);
+	const response = await BookController.addBook(`${bookslist.books[1]}`);
 	expect(response.data.message).toBe('User not authorized!');
 });
 
 test('Authorize user', async () => {
-	const response = await axios.post('https://demoqa.com/Account/v1/Login', {
-		userName: 'alina-t',
-		password: 'Bondarenko1!',
-	});
+	const response = await UserController.login();
 	expect(response.data.token).toBeDefined;
 });
